@@ -1,0 +1,269 @@
+% Copyright 2003 by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2007 by Frédéric Haziza <daz@it.uu.se>
+%       and 2007 by Marco Barisione <marco@barisione.org>
+%       and 2014 by Jesús Velázquez <jebus.velazquez@gmail.com>
+%
+% This file may be distributed and/or modified
+%   1. under the LaTeX Project Public License and/or
+%   2. under the GNU Public License.
+
+%===================================================================
+%                                           MODE: all (common stuff)
+%===================================================================
+\mode<all>
+\RequirePackage{calc}
+
+% Use sidebar theme
+\def\beamer@fancy@truetext{true}%
+\DeclareOptionBeamer{sidebartheme}[true]{\def\beamer@fancy@sidebartheme{#1}}
+
+\ProcessOptionsBeamer
+
+
+% If we're using the sidebar, we need to load new features and define lengths
+\ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    \useoutertheme{sidebar}
+    \setbeamersize{sidebar width left=\beamer@sidebarwidth}
+    \setlength{\beamer@headheight}{.045\paperheight}
+    \setlength{\beamer@sidebarwidth}{0.15\paperwidth}    
+\else
+    \newlength{\beamer@headheight}
+    \setlength{\beamer@headheight}{.045\paperheight}
+    \newlength{\beamer@sidebarwidth}
+    \setlength{\beamer@sidebarwidth}{0.15\paperwidth}
+\fi%
+
+
+% Lengths
+\newlength{\beamer@decolines@lineup}
+\setlength{\beamer@decolines@lineup}{.025\paperheight}
+\newlength{\beamer@decolines@linemid}
+\setlength{\beamer@decolines@linemid}{.015\paperheight}
+\newlength{\beamer@decolines@linebottom}
+\setlength{\beamer@decolines@linebottom}{.01\paperheight}
+
+% Colors.
+\setbeamercolor*{secondline}{parent=palette primary}
+\setbeamercolor*{firstline}{parent=palette secondary}
+\setbeamercolor*{thirdline}{parent=palette tertiary}
+
+
+
+%===================================================================
+%                                                       MODE: Beamer
+%===================================================================
+
+\mode<presentation>
+
+%===================================================================
+% Frametitle for watermark theme
+%===================================================================
+\defbeamertemplate*{frametitle wat}{unam theme}[1][left]
+{
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-9pt
+    \colorhrule{azul1}{\textwidth}{1pt}
+
+}
+
+
+%===================================================================
+% Frametitle for sidebar theme
+%===================================================================
+\defbeamertemplate*{frametitle bar}{unam theme}[1][left]
+{
+    \hskip 2pt
+    \strut \textcolor{azul1}{\insertframetitle}\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\hskip 4pt\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-6.5pt
+    \colorhrule{oro1}{\textwidth}{1pt}
+}
+
+\defbeamertemplate*{frametitle continuation}{unam theme}
+{
+    (\insertcontinuationcountroman)
+}
+
+
+
+
+%===================================================================
+% Header for watermark theme
+%===================================================================
+\defbeamertemplate*{headline wat}{unam theme}
+{
+  \vskip-2ex
+  \begin{beamercolorbox}[wd=\paperwidth,right]{palette secondary}
+    \colorhrule{oro1}{\paperwidth}{2pt}
+    \vskip12pt
+    \insertnavigation{\paperwidth}
+    \vskip6pt
+    \colorhrule{oro1}{0.85\paperwidth}{2pt}
+  \end{beamercolorbox} 
+}
+
+
+%===================================================================
+% Header for sidebar theme
+%===================================================================
+\defbeamertemplate*{headline bar}{unam theme}
+{
+% I think empty looks good
+}
+
+%===================================================================
+% Footline for watermark theme
+%===================================================================
+
+\defbeamertemplate*{footline wat}{unam theme}
+{
+  \hbox{%
+  \begin{beamercolorbox}[wd=.2\paperwidth,ht=\beamer@decolines@lineup,center]{}%ht=0ex
+  \vskip-0.5pt \insertframenumber/\inserttotalframenumber \vskip0.5pt % Fix the position of the text
+  \end{beamercolorbox}%
+  % First line
+  \begin{beamercolorbox}[wd=.8\paperwidth,ht=\beamer@decolines@lineup,dp=0pt]{firstline}%
+  \end{beamercolorbox}%
+  } %
+  % Second line.
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\beamer@decolines@linemid,dp=0pt,center]{secondline}%
+  %\insertnavigation{2pt}
+   \end{beamercolorbox}%
+  } %
+  % Third line.
+  \hbox{%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=\beamer@decolines@linebottom,dp=0pt]{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.9\paperwidth,ht=\beamer@decolines@linebottom,dp=0pt]{thirdline}%
+  \end{beamercolorbox}%
+  }%
+}
+
+
+
+%===================================================================
+% Footline for sidebar theme
+%===================================================================
+\defbeamertemplate*{footline bar}{unam theme}
+{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\beamer@sidebarwidth,ht=2ex,dp=1ex,center]{firstline}%
+      \usebeamerfont{}\insertshortdate%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.85\paperwidth,ht=2ex,dp=1ex,leftskip=1ex,rightskip=1ex]{secondline}%
+      \insertshortinstitute
+      \hfill
+      -\ \insertframenumber/\inserttotalframenumber\ -
+      {\hfill \insertshortauthor}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+%===================================================================
+% Watermark sidebar on the right
+%===================================================================
+\defbeamertemplate*{sidebar right water}{unam theme}
+{
+  \vfill
+  %\llap{\includegraphics[width=2\beamer@sidebarwidth,clip=true,trim=0pt 150pt 100pt 0pt]{unam_w1}}
+  \llap{\pgfuseimage{wmark}}
+}
+
+
+
+%===================================================================
+% Sidebar on the left
+%===================================================================
+
+% Set the canvas color
+\ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    \setbeamertemplate{sidebar canvas left}{\color{azul1}\rule{\beamer@sidebarwidth}{\paperheight}}
+\fi%
+
+% Define sidebar content
+\defbeamertemplate*{sidebar left bar}{unam theme}
+{
+  
+  \vbox{
+  \begin{beamercolorbox}[wd=\beamer@sidebarwidth,ht=0.25\paperheight,center]{firstline}%
+  %\includegraphics[width=0.8\beamer@sidebarwidth]{unam_sidebar}
+  \pgfuseimage{sidebar} 
+  \vspace*{\fill}
+  \end{beamercolorbox}
+  }
+  \insertverticalnavigation
+  \vfill
+}
+
+
+%===================================================================
+% Decide which theme to use
+%===================================================================
+
+% Footer or not
+\defbeamertemplate*{footline}{unam}[1][]
+{
+  \ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    \usebeamertemplate{footline bar}%
+  \else%
+    \usebeamertemplate{footline wat}%
+  \fi%
+}
+
+% Type of headline
+\defbeamertemplate*{headline}{unam}[1][]
+{
+  \ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    % Different headline on sidebartheme
+    \usebeamertemplate{headline bar}
+  \else%
+    \usebeamertemplate{headline wat}%
+  \fi%
+}
+
+% Watermark ?
+\defbeamertemplate*{sidebar right}{unam}%[1][]
+{
+  \ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    % No watermark on sidebartheme
+    \@empty
+  \else%
+    \usebeamertemplate{sidebar right water}  
+  \fi%
+}
+  
+% Sidebar on the left
+\defbeamertemplate*{sidebar left}{unam}[1][]
+{
+  \ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    % No watermark on sidebartheme
+    \usebeamertemplate{sidebar left bar}  
+  \else%
+    \@empty
+  \fi%
+}
+
+
+% frametitle
+\defbeamertemplate*{frametitle}{unam}[1][]
+{
+  \ifx\beamer@fancy@sidebartheme\beamer@fancy@truetext%
+    \usebeamertemplate{frametitle bar}  
+  \else%
+    \usebeamertemplate{frametitle wat}
+  \fi%
+}
