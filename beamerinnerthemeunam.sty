@@ -1,0 +1,216 @@
+% Copyright 2003 by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2007 by Frédéric Haziza <daz@it.uu.se>
+%       and 2007 by Marco Barisione <marco@barisione.org>
+%       and 2014 by Jesús Velázquez <jebus.velazquez@gmail.com>
+%
+% This file may be distributed and/or modified
+%   1. under the LaTeX Project Public License and/or
+%   2. under the GNU Public License.
+
+%===================================================================
+%                                           MODE: all (common stuff)
+%===================================================================
+\mode<all>
+% Logo to use in the fancy title page.
+\def\beamer@fancy@titlepagelogo{}
+\DeclareOptionBeamer{titlepagelogo}{\def\beamer@fancy@titlepagelogo{#1}}
+
+% Use alternative title page style.
+\DeclareOptionBeamer{fancytitlepage}[true]{\def\beamer@fancy@fancytitlepage{#1}}
+
+
+\ProcessOptionsBeamer
+
+% Colors.
+\setbeamercolor*{lineup}{parent=palette primary}
+\setbeamercolor*{linemid}{parent=palette secondary}
+\setbeamercolor*{linebottom}{parent=palette tertiary}
+\setbeamercolor*{title page header}{parent=palette secondary}
+
+% Lengths.
+\newlength{\beamer@fancy@lineup}
+\setlength{\beamer@fancy@lineup}{.025\paperheight}
+\newlength{\beamer@fancy@linemid}
+\setlength{\beamer@fancy@linemid}{.015\paperheight}
+\newlength{\beamer@fancy@linebottom}
+\setlength{\beamer@fancy@linebottom}{.01\paperheight}
+
+% Margins.
+\newlength{\beamer@fancy@normalmargin}
+\setlength{\beamer@fancy@normalmargin}{.06\paperwidth}
+\setbeamersize{text margin left=\beamer@fancy@normalmargin}
+\setbeamersize{text margin right=\beamer@fancy@normalmargin}
+\setlength\leftmargini{.6\beamer@fancy@normalmargin}
+\setlength\leftmarginii{.6\beamer@fancy@normalmargin}
+\setlength\leftmarginiii{.6\beamer@fancy@normalmargin}
+
+
+
+%===================================================================
+% Fancy title page --> To remove header and footer set the title
+% page inside a plain frame
+%===================================================================
+\defbeamertemplate*{title page fancy}{unam theme}[1][]
+{
+  %\vskip1ex    % start from the top of the paper
+  {\parskip0pt\offinterlineskip%
+  \hbox{\hskip-\Gm@lmargin\hbox{\vbox{%
+  \@tempdima=\textwidth\textwidth=\paperwidth\hsize=\textwidth\def\\{,}\vbox{}\vskip-1.5ex%
+    % Title.
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.4\paperheight,center,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\insertsubtitle}%
+      \fi%     
+      \vspace{.125\paperheight}%
+    \end{beamercolorbox}%
+    \vbox{}\vskip-\beamer@fancy@lineup%
+    \vbox{}\vskip-\beamer@fancy@linemid%
+    % First line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=\beamer@fancy@lineup,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=\beamer@fancy@lineup,dp=0pt]{lineup}%
+    \end{beamercolorbox}%
+    }%
+    \vbox{}\vskip0ex%
+    % Second line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=\beamer@fancy@linemid,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.9\paperwidth,ht=\beamer@fancy@linemid,dp=0pt]{linemid}%
+    \end{beamercolorbox}%
+    }%
+    % Third line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancy@linebottom,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancy@linebottom,dp=0pt]{linebottom}%
+    \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+    \hbox{%
+    % Crest
+    %\begin{beamercolorbox}[wd=0.1\paperwidth,ht=0.5\paperheight,center,#1]{}%
+    %\end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.55\paperwidth,ht=0.5\paperheight,center,#1]{}%
+        \centering
+        \includegraphics[width=0.5\paperwidth]{\beamer@fancy@titlepagelogo}% Universidad NacionalAut\'onoma de M\'exico
+        \vfil
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.4\paperwidth,ht=0.5\paperheight,right,#1]{}%
+    % Authors, institute and date
+          \vskip0.1em\par
+          \insertauthor\par
+          \vskip1.5em\par
+          \insertinstitute\par
+          \vskip1.5em\par
+          \insertdate\par
+          \vskip.5em
+    \end{beamercolorbox}%
+    }%
+  }}%
+  \hskip-\Gm@rmargin%
+  }}\hfil%
+  %
+  
+}
+
+
+
+
+%===================================================================
+%                                                  Simple title page
+%===================================================================
+\defbeamertemplate*{title page normal}{fancy theme}[1][]
+{
+ %\vskip1ex    % start from the top of the paper
+  {\parskip0pt\offinterlineskip%
+  \hbox{\hskip-\Gm@lmargin\hbox{\vbox{%
+  \@tempdima=\textwidth\textwidth=\paperwidth\hsize=\textwidth\def\\{,}\vbox{}\vskip-1.5ex%
+        %Crest
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.3\paperheight,center,#1]{}
+    \centering
+        \includegraphics[height=0.28\paperheight]{./graphics/logo_sinfondo}
+    \end{beamercolorbox}%    
+    % Title.
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.3\paperheight,center,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\insertsubtitle}%
+      \fi%     
+      \vspace{.125\paperheight}%
+    \end{beamercolorbox}%
+    \vbox{}\vskip-\beamer@fancy@lineup%
+    \vbox{}\vskip-\beamer@fancy@linemid%
+    
+    \vskip0pt%
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.4\paperheight,right,#1]{}%
+    % Authors, institute and date
+          \centering
+          \vskip0.1em\par
+          \insertauthor\par
+          \vskip1.5em\par
+          \insertinstitute\par
+          \vskip1.5em\par
+          \insertdate\par
+          \vskip.5em
+    \end{beamercolorbox}%
+    }%
+  }}%
+  \hskip-\Gm@rmargin%
+  }}\hfil%
+
+ % First line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=\beamer@fancy@lineup,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=\beamer@fancy@lineup,dp=0pt]{lineup}%
+    \end{beamercolorbox}%
+    }%
+    \vbox{}\vskip0ex%
+    % Second line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=\beamer@fancy@linemid,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.9\paperwidth,ht=\beamer@fancy@linemid,dp=0pt]{linemid}%
+    \end{beamercolorbox}%
+    }%
+    % Third line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancy@linebottom,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancy@linebottom,dp=0pt]{linebottom}%
+    \end{beamercolorbox}%
+    }%
+}
+
+
+%===================================================================
+%                            Decide which title page  should be used
+%===================================================================
+\defbeamertemplate*{title page}{unam}[1][]
+{
+  \def\beamer@fancy@truetext{true}%
+  \ifx\beamer@fancy@fancytitlepage\beamer@fancy@truetext%
+    \usebeamertemplate{title page fancy}%
+  \else%
+    \usebeamertemplate{title page normal}%
+  \fi%
+}
+
+
+
+
+%===================================================================
+%                                                              Items
+%===================================================================
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[triangle]
