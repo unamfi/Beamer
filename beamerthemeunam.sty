@@ -1,0 +1,84 @@
+% Copyright 2003 by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2007 by Frédéric Haziza <daz@it.uu.se>
+%       and 2007 by Marco Barisione <marco@barisione.org>
+%       and 2014 by Jesús Velázquez <jebus.velazquez@gmail.com>
+%
+% This file may be distributed and/or modified
+%   1. under the LaTeX Project Public License and/or
+%   2. under the GNU Public License.
+
+
+\ProvidesPackage{beamerthemeunam}[2014/05/09]
+
+\RequirePackage{pgfbaseimage}  % Insert figures
+
+
+%===================================================================
+%                                           MODE: all (common stuff)
+%===================================================================
+\mode<all>
+\DeclareOptionBeamer{titlepagelogo}{\PassOptionsToPackage{titlepagelogo=#1}{beamerinnerthemeunam}}
+
+% Fancy or simple title page
+\DeclareOptionBeamer{fancytitlepage}[true]{\PassOptionsToPackage{fancytitlepage=#1}{beamerinnerthemeunam}}
+
+% Use sidebar theme, instead of watermark
+\DeclareOptionBeamer{sidebartheme}[true]{\PassOptionsToPackage{sidebartheme=#1}{beamerouterthemeunam}}
+
+\ProcessOptionsBeamer
+
+
+% Blocks rounded and with shadow
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% Miniframes squared for navigation
+\setbeamertemplate{mini frames}[box]
+
+% Settings
+\useinnertheme{unam}
+\useoutertheme{unam}
+\usecolortheme{unam}
+\usefonttheme{unam}
+
+
+% Command \colorvrule to draw color vertical lines, 3 arguments: color, width, height
+\newcommand{\colorvrule}[3]{
+\begingroup\color{#1}\vrule width#2 height#3
+\endgroup}
+
+% Command \colorrule to draw color horizontal lines, 3 arguments: color, width, height
+\newcommand{\colorhrule}[3]{
+\begingroup\color{#1}\rule{#2}{#3} 
+\endgroup}
+
+
+%===================================================================
+% IMAGES
+%===================================================================
+% Makes the output file lighter
+\pgfdeclareimage[width=2\beamer@sidebarwidth,interpolate=true]{wmark}{./graphics/unam_w1} 
+\pgfdeclareimage[width=0.8\beamer@sidebarwidth,interpolate=true]{sidebar}{./graphics/unam_sidebar}
+
+%===================================================================
+%                                                       MODE: Beamer
+%===================================================================
+\mode<presentation>
+% No nav symbols, they collide with watermark, maybe inserting a left sidebar an put the in will fix this
+\setbeamertemplate{navigation symbols}{}
+
+
+%===================================================================
+%                                                        MODE: trans
+%===================================================================
+%\mode<handout>
+
+% Navigation sybols collide with watermark, need to find a way to overlap them
+%\ifbeamer@withnav%
+%    \setbeamertemplate{navigation symbols}[vertical]
+%\else%
+%    \setbeamertemplate{navigation symbols}{} % no navigations symbols
+%\fi
+%meanwhile let's just get rid of them
+%\setbeamertemplate{navigation symbols}{}
