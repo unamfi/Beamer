@@ -1,0 +1,82 @@
+% Copyright 2003 by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2007 by Frédéric Haziza <daz@it.uu.se>
+%       and 2007 by Marco Barisione <marco@barisione.org>
+%       and 2014 by Jesús Velázquez <jebus.velazquez@gmail.com>
+%
+% This file may be distributed and/or modified
+%   1. under the LaTeX Project Public License and/or
+%   2. under the GNU Public License.
+
+\ProvidesPackage{beamercolorthemeunam}[2014/05/09]
+
+
+
+\mode<all>
+
+%===========================================================
+%                                                     COLORS
+%===========================================================
+\definecolor{azul1}{RGB}{0,60,113}                  % Pantone Solid Coated 541 C
+\definecolor{oro1}{RGB}{228,215,126}                % Pantone Coated 460 C
+\definecolor{azul2}{RGB}{58,85,124}                 % Pantone Uncoated 541 U
+\definecolor{oro2}{RGB}{232,217,139}                % Pantone Uncoated 460 U
+\definecolor{plata1}{RGB}{141,144,146}              % Pantone Metallic 877 C
+\definecolor{plata2}{RGB}{180,183,185}              % Pantone Metallic 877 U
+
+\setbeamercolor*{palette primary}{fg=black,bg=oro1}
+\setbeamercolor*{palette secondary}{fg=white,bg=azul1}
+\setbeamercolor*{palette tertiary}{fg=black,bg=oro2}
+\setbeamercolor*{palette quaternary}{fg=azul1,bg=white}
+
+\setbeamercolor*{titlelike}{fg=azul1}
+\setbeamercolor*{frametitle}{bg=oro1,fg=black}
+\setbeamercolor*{part title}{bg=oro1,fg=black}
+\setbeamercolor{section in head/foot}{fg=white,bg=azul1}
+
+\setbeamercolor*{separation line}{bg=oro1,fg=azul1}
+\setbeamercolor*{fine separation line}{bg=oro2}
+
+% In case you choose to display the Table of Contents, or the Outline slide.
+\setbeamercolor{section in toc}{fg = azul1}
+\setbeamercolor{section in toc shaded}{fg = black}
+
+% Colors for navigation text in sidebar
+\setbeamercolor{section in sidebar}{fg = white}
+\setbeamercolor{section in sidebar shaded}{fg = oro1}
+\setbeamercolor{subsection in sidebar}{fg = white}
+\setbeamercolor{subsection in sidebar shaded}{fg = plata1}
+\setbeamercolor{subsubsection in sidebar}{fg = white}
+\setbeamercolor{subsubsection in sidebar shaded}{fg = plata2}
+
+% Colors for navigation text in header
+\setbeamercolor{section in headline}{fg = azul1}
+\setbeamercolor{section in headline shaded}{fg = plata1}
+
+
+
+% The colour of all the items, subitems and and subsubitems are set to black.
+\setbeamercolor{item}{bg=oro1,fg=azul1}
+\setbeamercolor{subitem}{bg=oro1,fg=azul1}
+\setbeamercolor{subsubitem}{bg=oro1,fg=azul1}
+
+% This sets the color for each item heading of the description environment.
+\setbeamercolor{description item}{fg = azul1}
+
+% Fix the colours for captions for figures and tables.
+\setbeamercolor{caption}{fg = black}
+\setbeamercolor{caption name}{fg = black}
+
+% The colour of the text
+\setbeamercolor{normal text}{fg = black}
+
+% Standard block (theorem)
+\setbeamercolor{block title}{bg = plata2,fg=black}
+%\setbeamercolor{block body}{fg = azul2}
+
+% Alert block
+\setbeamercolor{block title alerted}{bg = oro2}
+%\setbeamercolor{block body alerted}{bg = oro2!5!white}
+
+% Example block
+\setbeamercolor{block title example}{bg = azul1,fg = white}
+%\setbeamercolor{block body example}{bg = azul2!5!white}
