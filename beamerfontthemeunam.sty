@@ -1,0 +1,39 @@
+% Copyright 2003 by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2007 by Frédéric Haziza <daz@it.uu.se>
+%       and 2007 by Marco Barisione <marco@barisione.org>
+%       and 2014 by Jesús Velázquez <jebus.velazquez@gmail.com>
+%
+% This file may be distributed and/or modified
+%   1. under the LaTeX Project Public License and/or
+%   2. under the GNU Public License.
+
+\ProvidesPackage{beamerfontthemeunam}[2014/05/09]
+
+\mode<all>
+% Use defaultfonts
+%\usefonttheme{professionalfonts}
+%\usepackage[default]{raleway}
+%\usepackage[light,math]{iwona}
+
+
+% Titlepage
+\setbeamerfont{title}{parent=structure,size=\fontsize{15}{15}}
+\setbeamerfont{subtitle}{parent=title,size=\fontsize{10}{10}}
+\setbeamerfont{date}{size=\fontsize{8}{10}}
+\setbeamerfont{author}{size=\fontsize{12}{15}}
+\setbeamerfont{institute}{series=\bfseries,size=\fontsize{8}{10}}
+
+% Section
+\setbeamerfont{section title}{size=\LARGE}
+
+% Content
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{author in head/foot}{size=\tiny}
+\setbeamerfont{institute in head/foot}{size=\tiny}
+\setbeamerfont{date in head/foot}{}
+\setbeamerfont{footline}{parent={tiny structure}}
+\setbeamerfont{frametitle}{parent=structure,size=\Large}
+\setbeamerfont{framesubtitle}{parent=frametitle,size=\footnotesize}
+\setbeamerfont{section in toc}{parent=structure}
+\setbeamerfont{section in sidebar}{parent=structure}
+\setbeamerfont{subtitle in head/foot}{size=\tiny}
